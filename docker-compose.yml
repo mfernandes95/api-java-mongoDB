@@ -16,7 +16,7 @@ services:
 #    ports:
 #      - 5432:5432
   db_mongo:
-    container_name: mongo_mudeime
+    container_name: mongo_banzinga
     image: mongo:3.4.21-xenial
     ports:
       - 27017:27017
@@ -26,23 +26,23 @@ services:
     volumes:
       - ./database/mongodb:/var/lib/mongodb/data
 
-  api_java:
-    build: .
-    networks:
-      - banzinga
-    links:
-      - db_mongo
-    depends_on:
-      - db_mongo
-    container_name: 'java_kamikaze'
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db_postgres:5432/kamikaze
-    volumes:
-      - .:/usr/app
-    ports:
-      - 8080:8080
-    command: 'sh /usr/app/start.sh'
-    env_file: .heroku
+#  api_java:
+#    build: .
+#    networks:
+#      - banzinga
+#    links:
+#      - db_mongo
+#    depends_on:
+#      - db_mongo
+#    container_name: 'java_kamikaze'
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://db_postgres:5432/kamikaze
+#    volumes:
+#      - .:/usr/app
+#    ports:
+#      - 8080:8080
+#    command: 'sh /usr/app/start.sh'
+#    env_file: .heroku
 
 
 networks:
